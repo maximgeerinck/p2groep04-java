@@ -21,4 +21,10 @@
 
     <!-- ADD PERSISTENCE SUPPORT HERE (jpa, hibernate, etc) -->
 
+    <bean
+        class="org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter">
+    </bean>
+    
+    <bean id="planningRepository" class="model.PlanningRepository"/>
+    <bean id="presentationRepository" class="model.PresentationRepository"/>
 </beans>

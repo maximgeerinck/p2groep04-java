@@ -1,0 +1,11 @@
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+ 
+ <tiles-definitions>
+     
+    <definition name="planning/viewPlanning" template="/WEB-INF/jsp/base.jsp">
+        <put-attribute name="body" value="/WEB-INF/jsp/planning/viewPlanning.jsp"/>
+    </definition>
+    
+</tiles-definitions>
