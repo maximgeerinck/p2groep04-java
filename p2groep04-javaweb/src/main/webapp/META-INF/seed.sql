@@ -176,10 +176,6 @@ INSERT INTO location (`id`, `classroom`, `campus_id`) VALUES (152, "B4032", 1);
 
 # -- EXAMPLE DATA FOR TESTING -- #
 
-# suggestions
-INSERT INTO suggestion (`id`, `subject`, `researchdomain_id`) VALUES (1, "Encryptie dinges", 1);
-INSERT INTO suggestion (`id`, `subject`, `researchdomain_id`) VALUES (2, "Bloemen!", 2);
-
 # user: Bert van Vreckem - BPC
 INSERT INTO user (`id`, `created_on`, `email`, `enabled`, `first_name`, `last_ip`, `last_name`, `password`,`salt`, `updated_on`, `role`) VALUES (1, NOW(), "bert.vanvreckem@hogent.be", 1, "Bert", "127.0.0.1", "Van Vreckem", "test123", "privatesalt", NOW(), "BPC"); 
 # INSERT INTO user_role (`user_id`, `role_id`) VALUES (1, 1);
@@ -193,12 +189,16 @@ INSERT INTO user (`id`, `created_on`, `email`, `enabled`, `first_name`, `last_ip
 # INSERT INTO user_role (`user_id`, `role_id`) VALUES (3, 2);
 
 # user: Maxim Geerinck - STUDENT
-INSERT INTO user (`id`, `created_on`, `email`, `enabled`, `first_name`, `last_ip`, `last_name`, `password`,`salt`, `updated_on`, `role`, `suggestion_id`) VALUES (4, NOW(), "maximgeerinck@hotmail.com", 1, "Maxim", "127.0.0.1", "Geerinck", "test123", "privatesalt", NOW(), "Student", 1); 
+INSERT INTO user (`id`, `created_on`, `email`, `enabled`, `first_name`, `last_ip`, `last_name`, `password`,`salt`, `updated_on`, `role`) VALUES (4, NOW(), "maximgeerinck@hotmail.com", 1, "Maxim", "127.0.0.1", "Geerinck", "test123", "privatesalt", NOW(), "Student"); 
 # INSERT INTO user_role (`user_id`, `role_id`) VALUES (4, 3);
 
 # user: Logan Dupont - STUDENT
-INSERT INTO user (`id`, `created_on`, `email`, `enabled`, `first_name`, `last_ip`, `last_name`, `password`,`salt`, `updated_on`, `role`, `suggestion_id`) VALUES (5, NOW(), "logandupont@hotmail.com", 1, "Logan", "127.0.0.1", "Dupont", "test123", "privatesalt", NOW(), "Student", 2); 
+INSERT INTO user (`id`, `created_on`, `email`, `enabled`, `first_name`, `last_ip`, `last_name`, `password`,`salt`, `updated_on`, `role`) VALUES (5, NOW(), "logandupont@hotmail.com", 1, "Logan", "127.0.0.1", "Dupont", "test123", "privatesalt", NOW(), "Student"); 
 # INSERT INTO user_role (`user_id`, `role_id`) VALUES (5, 3);
+
+# suggestions
+INSERT INTO suggestion (`id`, `subject`, `researchdomain_id`, `student_id`) VALUES (1, "Encryptie dinges", 1, 1);
+INSERT INTO suggestion (`id`, `subject`, `researchdomain_id`, `student_id`) VALUES (2, "Bloemen!", 2, 2);
 
 # planning, door BPC
 INSERT INTO planning (`id`, `allowed_to_view`, `start_time`, `end_time`, `visible`, `bpcoordinator_id`) VALUES (1, 1, NOW() - INTERVAL 1 DAY, NOW() + INTERVAL 1 DAY, 1, 1);
