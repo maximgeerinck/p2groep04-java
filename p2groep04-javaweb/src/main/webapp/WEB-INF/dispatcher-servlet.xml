@@ -7,6 +7,7 @@
        xmlns:mvc="http://www.springframework.org/schema/mvc"
        xmlns:context="http://www.springframework.org/schema/context"
        xmlns:jee="http://www.springframework.org/schema/jee"
+       xmlns:jpa="http://www.springframework.org/schema/data/jpa"
        xsi:schemaLocation="http://www.springframework.org/schema/beans 
        http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
        http://www.springframework.org/schema/aop 
@@ -17,53 +18,12 @@
        http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd
        http://www.springframework.org/schema/context 
        http://www.springframework.org/schema/context/spring-context-3.0.xsd
-     http://www.springframework.org/schema/jee
-     http://www.springframework.org/schema/jee/spring-jee-3.0.xsd">
+       http://www.springframework.org/schema/jee
+       http://www.springframework.org/schema/jee/spring-jee-3.0.xsd 
+       http://www.springframework.org/schema/data/jpa
+       http://www.springframework.org/schema/data/jpa/spring-jpa.xsd">
 
     <bean class="org.springframework.web.servlet.mvc.support.ControllerClassNameHandlerMapping"/>
-
-    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-        <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
-        <property name="url" value="jdbc:mysql://localhost:3306/projecten2"/>
-        <property name="username" value="root"/>
-        <property name="password" value="root"/>
-
-    </bean>
-
-    <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
-        <property name="dataSource" ref="dataSource" />
-        <property name="packagesToScan">
-            <list>
-                <value>entity</value>
-            </list>
-        </property>
-
-        <property name="jpaVendorAdapter">
-            <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
-                <property name="showSql" value="true" /> 
-                <property name="generateDdl" value="true" />
-                <property name="database" value="MYSQL"/>
-            </bean>
-        </property>
-    </bean>
-    
-    <bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
-        <property name="dataSource" ref="dataSource" />
-        <property name="hibernateProperties">
-            <props>
-                <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
-                <prop key="hibernate.show_sql">true</prop>
-                <prop key="hibernate.hbm2ddl.auto">create-drop</prop>
-                <prop key="hibernate.hbm2ddl.import_files">/META-INF/seed.sql</prop>
-            </props>
-        </property>
-        <property name="packagesToScan" value="entity" />
-    </bean>
-  
-    <bean id="transactionManager" 
-          class=" org.springframework.orm.jpa.JpaTransactionManager ">
-        <constructor-arg ref="entityManagerFactory" />
-    </bean>
 
     <!-- Tiles -->
     <bean id="tilesConfigurer"
@@ -74,9 +34,8 @@
           class="org.springframework.web.servlet.view.UrlBasedViewResolver"
           p:viewClass="org.springframework.web.servlet.view.tiles2.TilesView" />
     <!-- tilles end -->
+
     
-    
-    <tx:annotation-driven transaction-manager="transactionManager"/>
     <mvc:resources mapping="/resources/**" location="/resources/" />
     <mvc:annotation-driven />
     <context:component-scan base-package="controller"/>

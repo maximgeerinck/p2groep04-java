@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.0" xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
+    <persistence-unit name="school" transaction-type="JTA">
+        <provider>org.hibernate.ejb.HibernatePersistence</provider>
+        <!--<class>entity.Campus</class>
+        <class>entity.GuestRequest</class>
+        <class>entity.Location</class>
+        <class>entity.Planning</class>
+        <class>entity.Presentation</class>
+        <class>entity.ResearchDomain</class>
+        <class>entity.Suggestion</class>
+        <class>entity.TimeFrame</class>
+        <class>entity.User</class>
+        <class>entity.Role</class>
+        <class>entity.BPCoordinator</class>
+        <class>entity.Promotor</class>
+        <class>entity.Student</class>-->
+        <properties>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect" />
+            <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/projecten2" />
+            <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver" />
+            <property name="hibernate.connection.username" value="root" />
+            <property name="hibernate.connection.password" value="lvsdev1410" />            
+            <property name="hibernate.hbm2ddl.auto" value="create-drop" />
+            <property name="hibernate.hbm2ddl.import_files" value="seed.sql" />
+            <property name="show_sql" value="true"/>
+        </properties>
+    </persistence-unit>
+</persistence>

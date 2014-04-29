@@ -41,12 +41,12 @@ public class PlanningController
         return "planning/viewPlanning";
     }
     
-    @RequestMapping(value = "/planning/get", method = RequestMethod.POST)
-    public @ResponseBody PlanningViewModel getPlanningJson(@PathVariable String name)
+    @RequestMapping(value = "/planning/get", method = RequestMethod.GET)
+    public @ResponseBody PlanningViewModel getPlanningJson()
     {
         
-        //get planning
-        Planning planning = planningRepository.findOneById(1);
+        //get planning        
+        Planning planning = planningRepository.findOne(1L);
         
         PlanningViewModel vm = new PlanningViewModel();
         vm.setId(planning.getId());

@@ -7,47 +7,12 @@
 package model;
 
 import entity.Planning;
-import java.sql.Timestamp;
-import java.util.List;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
  *
  * @author Maxim
  */
-public class PlanningRepository extends Repository
-{
-    public Planning findOneById(int id) 
-    {
-        return (Planning)getEm().createQuery("SELECT p FROM " + Planning.class.getSimpleName() + " p WHERE p.id = :id").setParameter("id", id).getSingleResult();
-    }
+public interface PlanningRepository extends JpaRepository<Planning, Long>{
     
-    public void changePlanningVisbility(Planning planning, boolean visible) 
-    {
-        getEm().getTransaction().begin();
-        planning.setVisible(visible);
-        getEm().getTransaction().commit();
-    }
-    
-    public void changePlanningVisbilityPeriod(Planning planning, Timestamp startTime, Timestamp endTime)
-    {
-        getEm().getTransaction().begin();
-        planning.setStartTime(startTime);
-        planning.setEndTime(endTime);
-        getEm().getTransaction().commit();
-    }
-
-    public List<Planning> findAll() {
-       return getEm().createQuery("SELECT p FROM " + Planning.class.getSimpleName() + " p").getResultList();
-    }
-    
-    public Planning create() 
-    {
-        getEm().getTransaction().begin();
-        Planning planning = new Planning();
-        getEm().persist(planning);
-        getEm().flush();
-        getEm().getTransaction().commit();
-        
-        return planning;
-    }
 }
