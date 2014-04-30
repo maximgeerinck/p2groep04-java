@@ -20,7 +20,7 @@
             <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/projecten2" />
             <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver" />
             <property name="hibernate.connection.username" value="root" />
-            <property name="hibernate.connection.password" value="lvsdev1410" />            
+            <property name="hibernate.connection.password" value="root" />            
             <property name="hibernate.hbm2ddl.auto" value="create-drop" />
             <property name="hibernate.hbm2ddl.import_files" value="seed.sql" />
             <property name="show_sql" value="true"/>
