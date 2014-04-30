@@ -22,7 +22,7 @@ public class LoginController {
     public String mainScreen(Model model, Principal principal) {
         String name = principal.getName();
         model.addAttribute("username", name);
-        model.addAttribute("message", "test");
+        model.addAttribute("message", "We are under constuction");
         return "main";
     }
 
