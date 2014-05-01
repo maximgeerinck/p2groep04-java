@@ -67,10 +67,6 @@ public abstract class User implements java.io.Serializable
     @Column(name = "enabled")
     protected int enabled;
     
-    @ManyToMany
-    @JoinTable(name = "presentation_guest", joinColumns = @JoinColumn(name = "guest_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "presentation_id", referencedColumnName = "id"))
-    protected List<Presentation> presentationsAttending;
-
     @OneToMany
     @JoinColumn(name = "bpcoordinator_id", referencedColumnName = "id")
     protected List<Planning> plannings;
@@ -161,14 +157,6 @@ public abstract class User implements java.io.Serializable
 
     public void setEnabled(int enabled) {
         this.enabled = enabled;
-    }
-
-    public List<Presentation> getPresentationsAttending() {
-        return this.presentationsAttending;
-    }
-
-    public void setPresentationsAttending(List<Presentation> presentationsAttending) {
-        this.presentationsAttending = presentationsAttending;
     }
 
     public List<Planning> getPlannings() {

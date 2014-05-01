@@ -1,7 +1,6 @@
 package entity;
 
 import java.io.*;
-import java.sql.Timestamp;
 import java.util.*;
 import javax.persistence.*;
 
@@ -20,8 +19,11 @@ public class Presentation implements Serializable
     @JoinColumn(name = "location_id", referencedColumnName = "id")
     private Location location;
 
-    @ManyToMany(mappedBy = "presentationsAttending", cascade = CascadeType.PERSIST)
-    private List<Student> guests;
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "presentation_attendees",
+            joinColumns = {@JoinColumn(name = "presentation_id")},
+            inverseJoinColumns = {@JoinColumn(name = "student_id")})
+    private List<Student> attendees;
 
     @Column(name = "date")
     @Temporal(TemporalType.DATE)
@@ -74,12 +76,12 @@ public class Presentation implements Serializable
         this.location = location;
     }
 
-    public List<Student> getGuests() {
-        return guests;
+    public List<Student> getAttendees() {
+        return attendees;
     }
 
-    public void setGuests(List<Student> guests) {
-        this.guests = guests;
+    public void setAttendees(List<Student> attendees) {
+        this.attendees = attendees;
     }
 
     public Date getDate() {
@@ -169,7 +171,7 @@ public class Presentation implements Serializable
          {
             
             users.add(p.getPresentator());
-            users.addAll(p.getGuests()); 
+            users.addAll(p.getAttendees()); 
             
          }
          

@@ -2,26 +2,54 @@
 
 <script>
     $(document).ready(function() {
-        $.getJSON("/p2groep04-javaweb/planning/get.htm", function(data){
-            console.log(data);
-        })
-        /*$.ajax({
-            url: "/p2groep04-javaweb/planning/get.htm",
-            type: "GET",
-            contentType: "application/json; charset=utf-8",
-            //data: JSON.stringify({ name: "Gerry", age: 20, city: "Sydney" }), //Stringified Json Object
-            async: false, //Cross-domain requests and dataType: "jsonp" requests do not support synchronous operation
-            cache: false, //This will force requested pages not to be cached by the browser          
-            processData: false, //To avoid making query String instead of JSON
-            success: function(resposeJsonObject) {
-                console.log(resposeJsonObject);
-            },
-            error: function(request, status, err) {
-                console.log("error");
-                console.log(request.responseText);
-                console.log(status.responseText);
-                console.log(err.responseText);
+        $.getJSON("/p2groep04-javaweb/planning/get.htm", function(planning) {
+
+            var presentations = planning['presentations'];
+            var eventsCustom = [];
+
+            for (var i = 0; i < presentations.length; i++) {
+
+                var tf = presentations[i]["timeframe"];
+
+                var timeStart = moment(presentations[i]["date"])
+                        .set('hour', tf["starttime"].split(":")[0])
+                        .set('minute', tf["starttime"].split(":")[1])
+                        .set('second', tf["starttime"].split(":")[2]);
+
+                var timeEnd = moment(presentations[i]["date"])
+                        .set('hour', tf["endtime"].split(":")[0])
+                        .set('minute', tf["endtime"].split(":")[1])
+                        .set('second', tf["endtime"].split(":")[2]);
+
+                var event = {
+                    id: presentations[i]["id"],
+                    start: timeStart.format(),
+                    end: timeEnd.format(),
+                    title: presentations[i]["subject"]
+                };
+                eventsCustom.push(event);
             }
-        });*/
+
+
+            $('#calendar').fullCalendar({
+                header: {
+                    left: 'prev,next today',
+                    center: 'title',
+                    right: 'month,agendaWeek,agendaDay'
+                },
+                defaultDate: moment(),
+                editable: false,
+                events: eventsCustom,
+                weekends: false,
+                timeFormat: 'H(:mm)', // uppercase H for 24-hour clock
+                defaultView: 'agendaWeek',
+                eventClick: function(calEvent, jsEvent, view) {
+                    alert("kzet wel nen popup voor in te schrijven en zoo... DAG LOGAN");
+
+                    // change the border color just for fun
+                    //$(this).css('border-color', 'red');
+                }
+            });
+        });
     });
 </script>

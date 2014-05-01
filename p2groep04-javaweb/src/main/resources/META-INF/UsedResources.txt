@@ -1,0 +1,1 @@
+Hibernate + MVC + JSON: http://confluence.jetbrains.com/display/IntelliJIDEA/Getting+Started+with+Spring+MVC,+Hibernate+and+JSON

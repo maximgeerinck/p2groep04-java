@@ -176,32 +176,29 @@ INSERT INTO location (`id`, `classroom`, `campus_id`) VALUES (152, "B4032", 1);
 
 # -- EXAMPLE DATA FOR TESTING -- #
 
-# suggestions
-INSERT INTO suggestion (`id`, `subject`, `researchdomain_id`) VALUES (1, "Encryptie dinges", 1);
-INSERT INTO suggestion (`id`, `subject`, `researchdomain_id`) VALUES (2, "Bloemen!", 2);
-
 # user: Bert van Vreckem - BPC
-INSERT INTO bpcoordinator (`id`, `created_on`, `email`, `enabled`, `first_name`, `last_ip`, `last_name`, `password`,`salt`, `updated_on`) VALUES (1, NOW(), "bert.vanvreckem@hogent.be", 1, "Bert", "127.0.0.1", "Van Vreckem", "test123", "privatesalt", NOW()); 
-# INSERT INTO user_role (`user_id`, `role_id`) VALUES (1, 1);
+INSERT INTO user (`id`, `role`, `created_on`, `email`, `enabled`, `first_name`, `last_ip`, `last_name`, `password`,`salt`, `updated_on`) VALUES (1, "BPC", NOW(), "bert.vanvreckem@hogent.be", 1, "Bert", "127.0.0.1", "Van Vreckem", "test123", "privatesalt", NOW()); 
 
 # user: Johan Van Schoor - Promotor
-INSERT INTO promotor (`id`, `amount_of_students`, `created_on`, `email`, `enabled`, `first_name`, `last_ip`, `last_name`, `password`,`salt`, `updated_on`) VALUES (1, 0, NOW(), "johan.vanschoor@hogent.be", 1, "Johan", "127.0.0.1", "Van Schoor", "test123", "privatesalt", NOW()); 
-# INSERT INTO user_role (`user_id`, `role_id`) VALUES (2, 2);
+INSERT INTO user (`id`, `role`, `amount_of_students`, `created_on`, `email`, `enabled`, `first_name`, `last_ip`, `last_name`, `password`,`salt`, `updated_on`) VALUES (2, "Promotor", 0, NOW(), "johan.vanschoor@hogent.be", 1, "Johan", "127.0.0.1", "Van Schoor", "test123", "privatesalt", NOW()); 
 
 # user: Irina Malfait - Promotor
-INSERT INTO promotor (`id`, `amount_of_students`, `created_on`, `email`, `enabled`, `first_name`, `last_ip`, `last_name`, `password`,`salt`, `updated_on`) VALUES (2, 0, NOW(), "irina.malfait@hogent.be", 1, "Irina", "127.0.0.1", "Malfait", "test123", "privatesalt", NOW()); 
-# INSERT INTO user_role (`user_id`, `role_id`) VALUES (3, 2);
+INSERT INTO user (`id`, `role`, `amount_of_students`, `created_on`, `email`, `enabled`, `first_name`, `last_ip`, `last_name`, `password`,`salt`, `updated_on`) VALUES (3, "Promotor", 0, NOW(), "irina.malfait@hogent.be", 1, "Irina", "127.0.0.1", "Malfait", "test123", "privatesalt", NOW()); 
 
 # user: Maxim Geerinck - STUDENT
-INSERT INTO student (`id`, `created_on`, `email`, `enabled`, `first_name`, `last_ip`, `last_name`, `password`,`salt`, `updated_on`, `suggestion_id`) VALUES (1, NOW(), "maximgeerinck@hotmail.com", 1, "Maxim", "127.0.0.1", "Geerinck", "test123", "privatesalt", NOW(), 1); 
+INSERT INTO user (`id`, `role`, `created_on`, `email`, `enabled`, `first_name`, `last_ip`, `last_name`, `password`,`salt`, `updated_on`, `suggestion_id`) VALUES (4, "Student", NOW(), "maximgeerinck@hotmail.com", 1, "Maxim", "127.0.0.1", "Geerinck", "test123", "privatesalt", NOW(), NULL); 
 # INSERT INTO user_role (`user_id`, `role_id`) VALUES (4, 3);
 
 # user: Logan Dupont - STUDENT
-INSERT INTO student (`id`, `created_on`, `email`, `enabled`, `first_name`, `last_ip`, `last_name`, `password`,`salt`, `updated_on`, `suggestion_id`) VALUES (2, NOW(), "logandupont@hotmail.com", 1, "Logan", "127.0.0.1", "Dupont", "test123", "privatesalt", NOW(), 2); 
+INSERT INTO user (`id`, `role`, `created_on`, `email`, `enabled`, `first_name`, `last_ip`, `last_name`, `password`,`salt`, `updated_on`, `suggestion_id`) VALUES (5, "Student", NOW(), "logandupont@hotmail.com", 1, "Logan", "127.0.0.1", "Dupont", "test123", "privatesalt", NOW(), NULL); 
 # INSERT INTO user_role (`user_id`, `role_id`) VALUES (5, 3);
+
+# suggestions
+INSERT INTO suggestion (`id`, `subject`, `researchdomain_id`, `student_id`) VALUES (1, "Encryptie dinges", 1, 4);
+INSERT INTO suggestion (`id`, `subject`, `researchdomain_id`, `student_id`) VALUES (2, "Bloemen!", 2, 5);
 
 # planning, door BPC
 INSERT INTO planning (`id`, `allowed_to_view`, `start_time`, `end_time`, `visible`, `bpcoordinator_id`) VALUES (1, 1, NOW() - INTERVAL 1 DAY, NOW() + INTERVAL 1 DAY, 1, 1);
-INSERT INTO presentation (`id`, `location_id`, `planning_id`, `timeframe_id`, `presentator_id`, `date`) VALUES (1, 1, 1, 1, 1, CURDATE());
-INSERT INTO presentation (`id`, `location_id`, `planning_id`, `timeframe_id`, `presentator_id`, `date`) VALUES (2, 1, 1, 4, 2, CURDATE() + INTERVAL 1 DAY);
+INSERT INTO presentation (`id`, `location_id`, `planning_id`, `timeframe_id`, `presentator_id`, `date`) VALUES (1, 1, 1, 1, 4, CURDATE());
+INSERT INTO presentation (`id`, `location_id`, `planning_id`, `timeframe_id`, `presentator_id`, `date`) VALUES (2, 1, 1, 4, 5, CURDATE() + INTERVAL 1 DAY);
 
