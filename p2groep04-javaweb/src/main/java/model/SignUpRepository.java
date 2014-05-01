@@ -1,17 +1,17 @@
 package model;
 
 import entity.Presentation;
-import entity.SignUp;
+import entity.GuestRequest;
 import java.util.List;
 
 
 public class SignUpRepository extends Repository{
-    private List<SignUp> signUps;
+    private List<GuestRequest> signUps;
     
-    public List<SignUp> findAllByPlanning(Presentation presentation) {
+    public List<GuestRequest> findAllByPlanning(Presentation presentation) {
         getEm().getTransaction().begin();
 
-        signUps =  getEm().createQuery("SELECT s FROM " + SignUp.class.getSimpleName() + "  JOIN s.presentation pr WHERE pr.id = :presentation").setParameter("presentation", presentation.getId()).getResultList();
+        signUps =  getEm().createQuery("SELECT s FROM " + GuestRequest.class.getSimpleName() + "  JOIN s.presentation pr WHERE pr.id = :presentation").setParameter("presentation", presentation.getId()).getResultList();
         getEm().getTransaction().commit();
         
         getEm().close();

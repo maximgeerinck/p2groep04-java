@@ -21,17 +21,6 @@ public class Location implements Serializable
     @JoinColumn(name = "campus_id", referencedColumnName = "id")
     private Campus campus;
 
-    @Column(name = "amount_spectators")
-    private int amount;
-
-    public int getAmount() {
-        return amount;
-    }
-
-    public void setAmount(int amount) {
-        this.amount = amount;
-    }
-    
     public int getId() {
         return this.id;
     }
@@ -75,6 +64,6 @@ public class Location implements Serializable
      * @param campus
      * @param classroom
      */
-	
+
 
 }

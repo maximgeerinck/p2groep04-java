@@ -30,8 +30,8 @@ public class Student extends User
     @JoinColumn(name = "suggestion_id", referencedColumnName = "id")
     private Suggestion approvedSuggestion;
     
-    @OneToMany(mappedBy = "student", targetEntity = SignUp.class)
-    private List<SignUp> guestRequests;
+    @OneToMany(mappedBy = "student", targetEntity = GuestRequest.class)
+    private List<GuestRequest> guestRequests;
     
     @ManyToMany(mappedBy="students", cascade=CascadeType.ALL)
     private List<Promotor> promotors;
@@ -47,11 +47,11 @@ public class Student extends User
         this.promotors = promotors;
     }
 
-    public List<SignUp> getGuestRequests() {
+    public List<GuestRequest> getGuestRequests() {
         return guestRequests;
     }
 
-    public void setGuestRequests(List<SignUp> guestRequests) {
+    public void setGuestRequests(List<GuestRequest> guestRequests) {
         this.guestRequests = guestRequests;
     }
 
@@ -81,5 +81,4 @@ public class Student extends User
 
     public Student() {
     }
-    
 }

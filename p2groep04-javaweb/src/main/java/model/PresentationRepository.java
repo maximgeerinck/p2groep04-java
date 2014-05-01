@@ -1,6 +1,6 @@
 package model;
 
-import entity.SignUp;
+import entity.GuestRequest;
 import entity.Planning;
 import entity.Presentation;
 import entity.Promotor;

@@ -7,7 +7,7 @@ import javax.persistence.*;
  * @author Maxim
  */
 @Entity
-public class SignUp implements Serializable 
+public class GuestRequest implements Serializable 
 {    
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -49,6 +49,6 @@ public class SignUp implements Serializable
             this.id = id;
     }
 
-    public SignUp() {}
+    public GuestRequest() {}
 
 }

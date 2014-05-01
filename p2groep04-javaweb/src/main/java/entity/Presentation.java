@@ -29,8 +29,8 @@ public class Presentation implements Serializable
     @Temporal(TemporalType.DATE)
     private Date date;
     
-    @OneToMany(mappedBy = "presentation", targetEntity = SignUp.class)
-    private List<SignUp> guestRequests;
+    @OneToMany(mappedBy = "presentation", targetEntity = GuestRequest.class)
+    private List<GuestRequest> guestRequests;
     
     @OneToOne
     @JoinColumn(name = "timeframe_id", referencedColumnName = "id")
@@ -92,11 +92,11 @@ public class Presentation implements Serializable
         this.date = date;
     }
 
-    public List<SignUp> getGuestRequests() {
+    public List<GuestRequest> getGuestRequests() {
         return guestRequests;
     }
 
-    public void setGuestRequests(List<SignUp> guestRequests) {
+    public void setGuestRequests(List<GuestRequest> guestRequests) {
         this.guestRequests = guestRequests;
     }
 
