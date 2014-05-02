@@ -24,7 +24,8 @@
        http://www.springframework.org/schema/data/jpa/spring-jpa.xsd">
 
     <bean class="org.springframework.web.servlet.mvc.support.ControllerClassNameHandlerMapping"/>
-
+    
+      
     <!-- Tiles -->
     <bean id="tilesConfigurer"
           class="org.springframework.web.servlet.view.tiles2.TilesConfigurer"
@@ -77,5 +78,11 @@
     <bean name="indexController"
           class="org.springframework.web.servlet.mvc.ParameterizableViewController"
           p:viewName="index" />
+    
+    <!-- Message .properties sources --> 
+    <bean id="messageSource"
+          class="org.springframework.context.support.ResourceBundleMessageSource"> 
+        <property name="basename" value="mymessages" />
+    </bean>
 
 </beans>
