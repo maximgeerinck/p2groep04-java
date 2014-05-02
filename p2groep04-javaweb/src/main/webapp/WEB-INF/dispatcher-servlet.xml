@@ -23,6 +23,10 @@
        http://www.springframework.org/schema/data/jpa
        http://www.springframework.org/schema/data/jpa/spring-jpa.xsd">
 
+    
+    <mvc:annotation-driven />
+    <context:component-scan base-package="controller"/>
+    
     <bean class="org.springframework.web.servlet.mvc.support.ControllerClassNameHandlerMapping"/>
     
       
@@ -38,8 +42,7 @@
 
     
     <mvc:resources mapping="/resources/**" location="/resources/" />
-    <mvc:annotation-driven />
-    <context:component-scan base-package="controller"/>
+   
     
     <!--
     Most controllers will use the ControllerClassNameHandlerMapping above, but

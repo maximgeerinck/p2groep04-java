@@ -8,6 +8,7 @@
 
 <html>
     <body onload='document.f.j_username.focus();'>
+        <h3>I'm different :C</h3>
 
         <c:if test="${not empty error}">
             <div class="errorblock">
@@ -33,7 +34,7 @@
                 </tr>
                 <tr>
                     <td colspan='2'><input name="submit" type="submit"
-                                           value="submit" />
+                                           value="Login" />
                     </td>
                 </tr>
             </table>
