@@ -8,9 +8,6 @@ import entity.ResearchDomain;
 import entity.TimeFrame;
 import java.util.Calendar;
 import java.util.List;
-import java.util.List;
-import javax.persistence.EntityManager;
-import util.JPAUtil;
 
 public class PresentationRepository extends Repository
 {

@@ -1,6 +1,5 @@
 package entity;
 
-
 import java.util.*;
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
@@ -15,23 +14,24 @@ import javax.persistence.PrePersist;
 
 
 /*import javax.mail.internet.InternetAddress; 
-import javax.mail.internet.MimeMessage;
-import javax.mail.*;*/
+ import javax.mail.internet.MimeMessage;
+ import javax.mail.*;*/
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.DiscriminatorType;
 import javax.persistence.Entity;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.Table;
+
 /**
  * @author Maxim
  */
 @Entity
-@Table(name="user")
+@Table(name = "user")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "role", discriminatorType = DiscriminatorType.STRING)
-public abstract class User implements java.io.Serializable  
-{
+public abstract class User implements java.io.Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -45,6 +45,9 @@ public abstract class User implements java.io.Serializable
 
     @Column(name = "last_name")
     protected String lastName;
+
+    @Column(name = "username")
+    protected String username;
 
     @Column(name = "password")
     protected String password;
@@ -66,7 +69,7 @@ public abstract class User implements java.io.Serializable
 
     @Column(name = "enabled")
     protected int enabled;
-    
+
     @OneToMany
     @JoinColumn(name = "bpcoordinator_id", referencedColumnName = "id")
     protected List<Planning> plannings;
@@ -101,6 +104,14 @@ public abstract class User implements java.io.Serializable
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getPassword() {
@@ -179,46 +190,43 @@ public abstract class User implements java.io.Serializable
     public String toString() {
         return this.lastName + " " + this.firstName;
     }
-    
-    
-      /*public void sendMail() {
 
-        Properties props = new Properties();  
-        props.put("mail.smtp.host", "smtp.gmail.com");  
-        props.put("mail.smtp.auth", "true");  
-        props.put("mail.debug", "true");  
-        props.put("mail.smtp.port", 25);  
-        props.put("mail.smtp.socketFactory.port", 25);  
-        props.put("mail.smtp.starttls.enable", "true");
-        props.put("mail.transport.protocol", "smtp");
-        Session mailSession = null;
+    /*public void sendMail() {
+
+     Properties props = new Properties();  
+     props.put("mail.smtp.host", "smtp.gmail.com");  
+     props.put("mail.smtp.auth", "true");  
+     props.put("mail.debug", "true");  
+     props.put("mail.smtp.port", 25);  
+     props.put("mail.smtp.socketFactory.port", 25);  
+     props.put("mail.smtp.starttls.enable", "true");
+     props.put("mail.transport.protocol", "smtp");
+     Session mailSession = null;
         
-        mailSession = Session.getInstance(props);
+     mailSession = Session.getInstance(props);
         
-        try {
+     try {
 
-            Transport transport = mailSession.getTransport();
+     Transport transport = mailSession.getTransport();
 
-            MimeMessage message = new MimeMessage(mailSession);
+     MimeMessage message = new MimeMessage(mailSession);
 
-            message.setSubject("Changes planning bachelorproef");
-            message.setFrom(new InternetAddress("p2groep04@gmail.com"));
-            String to = this.email;
-            message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
-            String body = "The planning for the bachelorproef has been changed, please check the planning for more information.";
-            message.setContent(body,"text/html");
-            transport.connect();
+     message.setSubject("Changes planning bachelorproef");
+     message.setFrom(new InternetAddress("p2groep04@gmail.com"));
+     String to = this.email;
+     message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
+     String body = "The planning for the bachelorproef has been changed, please check the planning for more information.";
+     message.setContent(body,"text/html");
+     transport.connect();
 
-            transport.sendMessage(message,message.getRecipients(Message.RecipientType.TO));
+     transport.sendMessage(message,message.getRecipients(Message.RecipientType.TO));
             
-            transport.close();
+     transport.close();
             
-        } catch (Exception exception) {
-            exception.printStackTrace();
-        }
+     } catch (Exception exception) {
+     exception.printStackTrace();
+     }
         
         
-    }*/
-    
-
+     }*/
 }

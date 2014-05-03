@@ -20,8 +20,8 @@ public class LoginController {
 
     @RequestMapping(value = "/main", method = RequestMethod.GET)
     public String mainScreen(Model model, Principal principal) {
-        String name = principal.getName();
-        model.addAttribute("username", name);
+        //String name = principal.getName();
+        //model.addAttribute("username", name);
         model.addAttribute("message", "This is under constuction");
         return "main";
     }
