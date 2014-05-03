@@ -18,7 +18,7 @@ public class PresentationRepository extends Repository
      * @param planning
      * @return 
      */
-    public List<Presentation> findAllByPlanning(Planning planning) {
+    public List<Presentation> findAllByPresentation(Planning planning) {
         getEm().getTransaction().begin();
 
         List<Presentation> presentations =  getEm().createQuery("SELECT p FROM " + Presentation.class.getSimpleName() + " p JOIN p.planning pl WHERE pl.id = :planning").setParameter("planning", planning.getId()).getResultList();
@@ -61,5 +61,15 @@ public class PresentationRepository extends Repository
         System.out.println(presentations.size());
         
         return presentations;
+    }
+    
+    public Presentation findById(int id){
+        getEm().getTransaction().begin();
+        Presentation presentation =  (Presentation)getEm().createQuery("SELECT p FROM " + Presentation.class.getSimpleName() + " WHERE id =" + id + ";").getSingleResult();
+        getEm().getTransaction().commit();
+        
+        getEm().close();
+        
+        return presentation;
     }
 }
