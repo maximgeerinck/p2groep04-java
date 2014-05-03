@@ -3,33 +3,55 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package entity;
+
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import javax.xml.soap.MessageFactory;
+import model.UserRepository;
 
 /**
  *
  * @author Bram
  */
-public class UserService 
-{
-    public boolean IsValidPassword(String username, String password)
-        {
-            //get salt of this username
-            String salt = UserRepository.FindSaltByUsername(username);
+public class UserService {
 
-            if (salt == null)
-            {
-                return false;
-            }
+    UserRepository userRepository;
 
-            //rebuild pass
-            string saltPassword = Encrypt(password + salt);
+    public boolean IsValidPassword(String username, String password) throws NoSuchAlgorithmException {
+        //get salt of this username
+        User temp = userRepository.findUserByUsername(username);
+        String salt = temp.salt;
 
-            //check if user can be found with this salt
-            User user = _userRepository.FindByUsernameAndPassword(username, saltPassword);
-
-            return user != null;
+        if (salt == null) {
+            return false;
         }
-    
-    
+
+        //rebuild pass
+        String saltPassword = encrypt(password + salt);
+
+        //check if user can be found with this salt
+        User user = userRepository.findByUsernameAndPassword(username, saltPassword);
+
+        return user != null;
+    }
+
+    public static String encrypt(String password) throws NoSuchAlgorithmException {
+//            System.Security.Cryptography.SHA512Managed sha = new System.Security.Cryptography.SHA512Managed();
+//            byte[] hash = sha.ComputeHash(Encoding.ASCII.GetBytes(password));
+//            StringBuilder stringBuilder = new StringBuilder();
+//
+//            foreach (byte b in hash)
+//            {
+//                stringBuilder.AppendFormat("{0:x2}", b);
+//            }
+//            return stringBuilder.ToString();
+
+        MessageDigest digest = java.security.MessageDigest.getInstance("SHA512");
+        byte[] hash;
+        
+        
+        
+
+    }
 }

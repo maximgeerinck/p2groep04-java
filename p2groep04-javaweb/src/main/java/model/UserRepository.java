@@ -15,27 +15,21 @@ import java.util.List;
  * @author Bram
  */
 public class UserRepository extends Repository
-{
-    
-    
+{  
     public List<User> findAll()
-    {
-        getEm().getTransaction().begin();
-        
+    {       
         List<User> users =  getEm().createQuery("SELECT u FROM " + User.class.getSimpleName()).getResultList();
-        getEm().getTransaction().commit();
-        getEm().close();
-        
+                
         return users;
     }
     
-    public User findSaltByUsername(String username)
+    public User findUserByUsername(String username)
+    {       
+       return (User)getEm().createQuery("SELECT u FROM" + User.class.getSimpleName() + "WHERE username=" + username +";").getSingleResult();           
+    }
+    
+    public User findByUsernameAndPassword(String username, String saltpassword)
     {
-        getEm().getTransaction().begin();
-        User user = getEm().createQuery("SELECT u FROM " + User.class.getSimpleName() + " u WHERE u.username = :username").setParameter("username", username).getSingleResult();
-        getEm().getTransaction().commit();
-        getEm().close();
-        
-        return user;
+        return (User)getEm().createQuery("SELECT u FROM" + User.class.getSimpleName() + "WHERE username=" + username + " AND password=" +  saltpassword + ";").getSingleResult(); 
     }
 }
