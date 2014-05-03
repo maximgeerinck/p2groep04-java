@@ -7,7 +7,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
 <html>
-    <body onload='document.f.j_username.focus();'>
+    <body onload='document.loginForm.j_username.focus();'>
         <h3>I'm different :C</h3>
 
         <c:if test="${not empty error}">
@@ -17,7 +17,7 @@
             </div>
         </c:if>
 
-        <form action="<c:url value='j_spring_security_check' />"
+        <form name='loginForm' action="<c:url value='j_spring_security_check' />"
               method='POST'>
             <table>
                 <tr>

@@ -4,9 +4,11 @@
         <param-name>contextConfigLocation</param-name>
         <param-value>/WEB-INF/applicationContext.xml</param-value>
     </context-param>
+    
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
+    
     <servlet>
         <servlet-name>dispatcher</servlet-name>
         <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
@@ -34,10 +36,9 @@
     <context-param>
         <param-name>contextConfigLocation</param-name>
         <param-value>
-            /WEB-INF/applicationContext.xml,
-            /WEB-INF/dispatcher-servlet.xml,
-            /WEB-INF/spring-security.xml
-        </param-value>
+            /WEB-INF/springmvcdispatcher-servlet.xml,
+            /WEB-INF/spring-config.xml
+        </param-value> 
     </context-param>
     
     <!-- Spring Security -->
