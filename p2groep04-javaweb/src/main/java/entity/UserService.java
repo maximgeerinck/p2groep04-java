@@ -5,9 +5,9 @@
  */
 package entity;
 
-import com.google.common.base.Charsets;
-import com.google.common.hash.Hashing;
+import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import javax.xml.soap.MessageFactory;
 import model.UserRepository;
 
 /**
@@ -28,11 +28,30 @@ public class UserService {
         }
 
         //rebuild pass
-        String saltPassword = Hashing.sha512().hashString(password + salt, Charsets.UTF_8).toString();        
+        String saltPassword = encrypt(password + salt);
 
         //check if user can be found with this salt
         User user = userRepository.findByUsernameAndPassword(username, saltPassword);
 
         return user != null;
+    }
+
+    public static String encrypt(String password) throws NoSuchAlgorithmException {
+//            System.Security.Cryptography.SHA512Managed sha = new System.Security.Cryptography.SHA512Managed();
+//            byte[] hash = sha.ComputeHash(Encoding.ASCII.GetBytes(password));
+//            StringBuilder stringBuilder = new StringBuilder();
+//
+//            foreach (byte b in hash)
+//            {
+//                stringBuilder.AppendFormat("{0:x2}", b);
+//            }
+//            return stringBuilder.ToString();
+
+        MessageDigest digest = java.security.MessageDigest.getInstance("SHA512");
+        byte[] hash;
+        
+        
+        
+
     }
 }

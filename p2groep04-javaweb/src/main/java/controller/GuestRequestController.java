@@ -6,7 +6,6 @@
 
 package controller;
 
-import entity.Presentation;
 import model.GuestRequestRepository;
 import model.PresentationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,15 +24,9 @@ public class GuestRequestController {
     
     @RequestMapping(value = "/request", method = RequestMethod.GET)
     public String showGuestRequest(int id) {
-        
-        Presentation presentation = presentationRepository.findById(id);
-        if(presentation == null)
-            throw new IllegalArgumentException();
-        
-       //TODO: logan fixt dit maar
-       /*if( guestRequestRepository.findAllByPresentation(presentation).size() == presentation.getLocation().getCapacity())
-            return "completeMessage";*/
-        
-        return "guestRequestForm";
+        if( guestRequestRepository.findAllByPresentation(presentationRepository.findById(id)).size() == presentationRepository.findById(id).getLocation().getCapacity())
+            return "completeMessage";
+        else
+            return "guestRequestForm";
     }
 }

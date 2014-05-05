@@ -21,8 +21,8 @@ public class Location implements Serializable
     @JoinColumn(name = "campus_id", referencedColumnName = "id")
     private Campus campus;
     
-    @Column(name = "capacity", nullable = false)
-    private int capacity = 0;
+    @Column(name = "capacity")
+    private int capacity;
 
     public int getCapacity() {
         return capacity;
