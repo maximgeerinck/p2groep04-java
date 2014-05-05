@@ -22,11 +22,13 @@ public class GuestRequestController {
     private GuestRequestRepository guestRequestRepository;
     private PresentationRepository presentationRepository;
     
-    @RequestMapping(value = "/request", method = RequestMethod.GET)
-    public String showGuestRequest(int id) {
-        if( guestRequestRepository.findAllByPresentation(presentationRepository.findById(id)).size() == presentationRepository.findById(id).getLocation().getCapacity())
-            return "completeMessage";
-        else
-            return "guestRequestForm";
+    @RequestMapping(value = "/requests", method = RequestMethod.GET)
+    public String ListGuestRequests(int id) {
+        
+        Presentation presentation = presentationRepository.findById(id);
+        if(presentation == null)
+            throw new IllegalArgumentException();
+         
+        return "guestRequestForm";
     }
 }

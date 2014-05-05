@@ -18,7 +18,7 @@ public class PresentationRepository extends Repository
      * @param planning
      * @return 
      */
-    public List<Presentation> findAllByPresentation(Planning planning) {
+    public List<Presentation> findAllByPlanning(Planning planning) {
         getEm().getTransaction().begin();
 
         List<Presentation> presentations =  getEm().createQuery("SELECT p FROM " + Presentation.class.getSimpleName() + " p JOIN p.planning pl WHERE pl.id = :planning").setParameter("planning", planning.getId()).getResultList();

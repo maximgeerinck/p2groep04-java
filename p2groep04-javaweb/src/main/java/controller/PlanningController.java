@@ -48,7 +48,7 @@ public class PlanningController
     {
         
         //get planning        
-        Planning planning = planningRepository.findOne(1L);
+        Planning planning = planningRepository.findOne(1L);        
          
         JSONArray pArray = new JSONArray();
         JSONObject planningJSON = new JSONObject();
