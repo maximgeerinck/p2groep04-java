@@ -1,4 +1,4 @@
-package model;
+package model.repositories;
 
 import entity.GuestRequest;
 import entity.Planning;
@@ -8,6 +8,7 @@ import entity.ResearchDomain;
 import entity.TimeFrame;
 import java.util.Calendar;
 import java.util.List;
+import model.Repository;
 
 public class PresentationRepository extends Repository
 {

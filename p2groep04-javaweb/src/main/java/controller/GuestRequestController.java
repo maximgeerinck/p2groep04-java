@@ -6,8 +6,9 @@
 
 package controller;
 
-import model.GuestRequestRepository;
-import model.PresentationRepository;
+import entity.Presentation;
+import model.repositories.GuestRequestRepository;
+import model.repositories.PresentationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -20,6 +21,8 @@ public class GuestRequestController {
     
     @Autowired
     private GuestRequestRepository guestRequestRepository;
+    
+    @Autowired
     private PresentationRepository presentationRepository;
     
     @RequestMapping(value = "/requests", method = RequestMethod.GET)

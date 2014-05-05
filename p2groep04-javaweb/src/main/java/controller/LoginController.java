@@ -26,10 +26,10 @@ public class LoginController {
         return "main";
     }
 
-    @RequestMapping(value = "/login", method = RequestMethod.GET)
+   /* @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String login() {
         return "login";
-    }
+    }*/
 
     @RequestMapping(value = "/loginfailed", method = RequestMethod.GET)
     public String loginerror(Model model) {

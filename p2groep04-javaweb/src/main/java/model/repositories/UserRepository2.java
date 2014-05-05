@@ -3,18 +3,19 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
-package model;
+/*
+package model.repositories;
 
 
 import entity.User;
 import java.util.List;
+import model.Repository;
 
 /**
  *
  * @author Bram
- */
-public class UserRepository extends Repository
+ *//*
+public class UserRepository2 extends Repository
 {  
     public List<User> findAll()
     {       
@@ -33,3 +34,4 @@ public class UserRepository extends Repository
         return (User)getEm().createQuery("SELECT u FROM" + User.class.getSimpleName() + "WHERE username=" + username + " AND password=" +  saltpassword + ";").getSingleResult(); 
     }
 }
+*/

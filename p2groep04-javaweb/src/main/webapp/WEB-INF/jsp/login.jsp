@@ -1,8 +1,3 @@
-<%-- 
-    Document   : login
-    Created on : 30-apr-2014, 17:28:40
-    Author     : Bram
---%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
@@ -17,26 +12,35 @@
             </div>
         </c:if>
 
-        <form name='loginForm' action="<c:url value='j_spring_security_check' />"
-              method='POST'>
+        <c:if test="${not empty error}">
+            <div class="error">${error}</div>
+        </c:if>
+        <c:if test="${not empty msg}">
+            <div class="msg">${msg}</div>
+        </c:if>
+
+        <form name='loginForm' action="<c:url value='/j_spring_security_check' />" method='POST'>
             <table>
                 <tr>
                     <td>User:</td>
                     <td>
-                        <input type='text' name='j_username' value=''/>
+                        <input type='text' name='username' value=''/>
                     </td>
                 </tr>
                 <tr>
                     <td>Password:</td>
                     <td>
-                        <input type='password' name='j_password' />
+                        <input type='password' name='password' />
                     </td>
                 </tr>
                 <tr>
-                    <td colspan='2'><input name="submit" type="submit"
-                                           value="Login" />
+                    <td colspan='2'>
+                        <input name="submit" type="submit" value="Login" />
                     </td>
                 </tr>
+
+                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+
             </table>
         </form>
 

@@ -5,53 +5,38 @@
  */
 package entity;
 
-import java.security.MessageDigest;
+import com.google.common.base.Charsets;
+import com.google.common.hash.Hashing;
 import java.security.NoSuchAlgorithmException;
-import javax.xml.soap.MessageFactory;
-import model.UserRepository;
+import java.util.List;
+import model.repositories.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  *
  * @author Bram
  */
-public class UserService {
+public class UserService 
+{
+    @Autowired
+    private UserRepository userRepository;
 
-    UserRepository userRepository;
-
-    public boolean IsValidPassword(String username, String password) throws NoSuchAlgorithmException {
+    public boolean IsValidPassword(String username, String password) throws NoSuchAlgorithmException 
+    {
         //get salt of this username
-        User temp = userRepository.findUserByUsername(username);
-        String salt = temp.salt;
+        List<User> temp = userRepository.findByUsername(username);
+        String salt = temp.get(0).salt;
 
         if (salt == null) {
             return false;
         }
 
         //rebuild pass
-        String saltPassword = encrypt(password + salt);
+        String saltPassword = Hashing.sha512().hashString(password + salt, Charsets.UTF_8).toString();
 
         //check if user can be found with this salt
-        User user = userRepository.findByUsernameAndPassword(username, saltPassword);
+        List<User> user = userRepository.findByUsernameAndPassword(username, saltPassword);
 
-        return user != null;
-    }
-
-    public static String encrypt(String password) throws NoSuchAlgorithmException {
-//            System.Security.Cryptography.SHA512Managed sha = new System.Security.Cryptography.SHA512Managed();
-//            byte[] hash = sha.ComputeHash(Encoding.ASCII.GetBytes(password));
-//            StringBuilder stringBuilder = new StringBuilder();
-//
-//            foreach (byte b in hash)
-//            {
-//                stringBuilder.AppendFormat("{0:x2}", b);
-//            }
-//            return stringBuilder.ToString();
-
-        MessageDigest digest = java.security.MessageDigest.getInstance("SHA512");
-        byte[] hash;
-        
-        
-        
-
+        return user.size() > 0;
     }
 }

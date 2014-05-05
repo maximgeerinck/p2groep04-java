@@ -4,15 +4,18 @@
  * and open the template in the editor.
  */
 
-package model;
+package model.repositories;
 
-import entity.Planning;
+import entity.User;
+import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
  *
  * @author Maxim
  */
-public interface PlanningRepository extends JpaRepository<Planning, Long>{
-    
+public interface UserRepository extends JpaRepository<User, Long> 
+{
+    List<User> findByUsername(String username);
+    List<User> findByUsernameAndPassword(String username, String password);
 }

@@ -8,7 +8,7 @@ package controller;
 
 import entity.Planning;
 import entity.Presentation;
-import model.PlanningRepository;
+import model.repositories.PlanningRepository;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
