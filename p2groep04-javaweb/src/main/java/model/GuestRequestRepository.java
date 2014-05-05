@@ -1,21 +1,9 @@
 package model;
 
-import entity.Presentation;
 import entity.GuestRequest;
-import java.util.List;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 
-public class GuestRequestRepository extends Repository{
-    private List<GuestRequest> signUps;
+public interface GuestRequestRepository extends JpaRepository<GuestRequest, Long>{
     
-    public List<GuestRequest> findAllByPresentation(Presentation presentation) {
-        getEm().getTransaction().begin();
-
-        signUps =  getEm().createQuery("SELECT s FROM " + GuestRequest.class.getSimpleName() + "  JOIN s.presentation pr WHERE pr.id = :presentation").setParameter("presentation", presentation.getId()).getResultList();
-        getEm().getTransaction().commit();
-        
-        getEm().close();
-        
-        return signUps;
-    }
 }
