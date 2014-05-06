@@ -27,6 +27,7 @@
        http://www.springframework.org/schema/security/spring-security-3.1.xsd">
 
     
+    <jpa:repositories base-package="model.repositories"/>
     <mvc:annotation-driven />
     <context:component-scan base-package="controller"/>
     
@@ -44,16 +45,18 @@
     <!-- tilles end -->
 
     
+    <bean id="customAuthenticationProvider" class="security.MyAuthenticationProvider"/>
+    
     <bean
         class="org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter">
     </bean>
     
     <bean id="dataSource"
-        class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+          class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <property name="driverClassName" value="com.mysql.jdbc.Driver" />
         <property name="url" value="jdbc:mysql://localhost:3306/projecten2" />
         <property name="username" value="root" />
-        <property name="password" value="lvsdev1410" />
+        <property name="password" value="root" />
     </bean>
     
     <bean class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor" />
@@ -68,50 +71,14 @@
     </bean>
     
     <mvc:resources mapping="/resources/**" location="/resources/" />
-   
     
-    <!--
-    Most controllers will use the ControllerClassNameHandlerMapping above, but
-    for the index controller we are using ParameterizableViewController, so we must
-    define an explicit mapping for it.
-    -->
-    <bean id="urlMapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
-        <property name="mappings">
-            <props>
-                <prop key="index.htm">indexController</prop>
-            </props>
-        </property>
-    </bean>
-    
-    <bean
-        class="org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter">
-    </bean>
-
-    <bean id="viewResolver"
-          class="org.springframework.web.servlet.view.InternalResourceViewResolver"
-          p:prefix="/WEB-INF/jsp/"
-          p:suffix=".jsp" />
-
-    <!--prefix-->
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix">
-            <value>/WEB-INF/jsp/</value> 
+            <value>/WEB-INF/jsp/</value>
         </property>
         <property name="suffix">
-            <value>.jsp</value> 
+            <value>.jsp</value>
         </property>
-    </bean>
-    <!--
-    The index controller.
-    -->
-    <bean name="indexController"
-          class="org.springframework.web.servlet.mvc.ParameterizableViewController"
-          p:viewName="index" />
-    
-    <!-- Message .properties sources --> 
-    <bean id="messageSource"
-          class="org.springframework.context.support.ResourceBundleMessageSource"> 
-        <property name="basename" value="mymessages" />
     </bean>
 
 </beans>

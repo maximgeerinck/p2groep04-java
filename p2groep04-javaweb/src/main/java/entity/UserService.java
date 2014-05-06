@@ -21,7 +21,7 @@ public class UserService
     @Autowired
     private UserRepository userRepository;
 
-    public boolean IsValidPassword(String username, String password) throws NoSuchAlgorithmException 
+   /* public boolean IsValidPassword(String username, String password) throws NoSuchAlgorithmException 
     {
         //get salt of this username
         List<User> temp = userRepository.findByUsername(username);
@@ -38,5 +38,5 @@ public class UserService
         List<User> user = userRepository.findByUsernameAndPassword(username, saltPassword);
 
         return user.size() > 0;
-    }
+    }*/
 }

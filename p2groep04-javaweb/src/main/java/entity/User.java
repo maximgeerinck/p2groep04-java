@@ -35,7 +35,7 @@ public abstract class User implements java.io.Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    protected int id;
+    protected Long id;
 
     @Column(name = "email")
     protected String email;
@@ -74,11 +74,11 @@ public abstract class User implements java.io.Serializable {
     @JoinColumn(name = "bpcoordinator_id", referencedColumnName = "id")
     protected List<Planning> plannings;
 
-    public int getId() {
+    public Long getId() {
         return this.id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

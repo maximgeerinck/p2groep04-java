@@ -48,8 +48,7 @@
     </bean>
 
     <tx:annotation-driven transaction-manager="transactionManager"/>
-    <jpa:repositories base-package="model.repositories"/>
-    
+
     <tx:annotation-driven />
 
 </beans>

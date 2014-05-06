@@ -186,11 +186,11 @@ INSERT INTO user (`id`, `role`, `amount_of_students`, `created_on`, `email`, `en
 INSERT INTO user (`id`, `role`, `amount_of_students`, `created_on`, `email`, `enabled`, `first_name`, `last_ip`, `last_name`, `password`,`salt`, `updated_on`) VALUES (3, "Promotor", 0, NOW(), "irina.malfait@hogent.be", 1, "Irina", "127.0.0.1", "Malfait", "test123", "privatesalt", NOW()); 
 
 # user: Maxim Geerinck - STUDENT
-INSERT INTO user (`id`, `role`, `created_on`, `email`, `enabled`, `first_name`, `last_ip`, `last_name`, `password`,`salt`, `updated_on`, `suggestion_id`) VALUES (4, "Student", NOW(), "maximgeerinck@hotmail.com", 1, "Maxim", "127.0.0.1", "Geerinck", "test123", "privatesalt", NOW(), NULL); 
+INSERT INTO user (`id`, `username`, `role`, `created_on`, `email`, `enabled`, `first_name`, `last_ip`, `last_name`, `password`,`salt`, `updated_on`, `suggestion_id`) VALUES (4, "209452mg", "Student", NOW(), "maximgeerinck@hotmail.com", 1, "Maxim", "127.0.0.1", "Geerinck", "fb30c5bae9be9322fc844655e4cfc2078f5a20217e29b7247c1da194984a8deb67edfa8e174a8b554f96eaa3b27848bd33cbacee26b2dc1644c5803a16e44751", "Unknown", NOW(), NULL); 
 # INSERT INTO user_role (`user_id`, `role_id`) VALUES (4, 3);
 
 # user: Logan Dupont - STUDENT
-INSERT INTO user (`id`, `role`, `created_on`, `email`, `enabled`, `first_name`, `last_ip`, `last_name`, `password`,`salt`, `updated_on`, `suggestion_id`) VALUES (5, "Student", NOW(), "logandupont@hotmail.com", 1, "Logan", "127.0.0.1", "Dupont", "test123", "privatesalt", NOW(), NULL); 
+INSERT INTO user (`id`, `role`, `created_on`, `email`, `enabled`, `first_name`, `last_ip`, `last_name`, `password`,`salt`, `updated_on`, `suggestion_id`) VALUES (5, "Student", NOW(), "logandupont@hotmail.com", 1, "Logan", "127.0.0.1", "Dupont", "ef3c52f55940f352278b8595073c074ea91507b06e429892d8b116b90d4dbdb6d986870cec242e584327bda2a53d4174f52fe799207495101fccf2191ed38675", "Unknown", NOW(), NULL); 
 # INSERT INTO user_role (`user_id`, `role_id`) VALUES (5, 3);
 
 # suggestions
