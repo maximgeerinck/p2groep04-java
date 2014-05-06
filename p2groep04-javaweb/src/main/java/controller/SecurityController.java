@@ -31,7 +31,7 @@ public class SecurityController {
         if (logout != null) {
             model.addObject("msg", "You've been logged out successfully.");
         }
-        model.setViewName("login");
+        model.setViewName("view.login");
 
         return model;
 

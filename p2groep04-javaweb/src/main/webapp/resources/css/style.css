@@ -47,11 +47,13 @@ input[type="text"], input[type="password"], textarea {
     border: 1px solid rgb(194, 194, 194);
     padding: 10px 10px;
     border-radius: 3px;
+    box-sizing: border-box;
 }
 input[type="text"]:focus, input[type="password"]:focus, textarea:focus {
     border-color: #000;
     color: #000;
     outline: none;
+    box-sizing: border-box;
 }
 
 .form-group + .form-group {
@@ -95,14 +97,15 @@ input[type="text"]:focus, input[type="password"]:focus, textarea:focus {
 
 /* buttons */
 .button {
-    background: rgb(96, 189, 241);
-    border: 1px solid rgb(79, 141, 182);
+    background: rgb(147, 209, 89);
+    border: 1px solid rgb(126, 184, 135);
     border-radius: 5px;
     padding: 7px 10px;
     color: white;
 }
 .button:hover {
-    background-color: rgb(80, 163, 209);
+    background-color: rgb(158, 223, 97);
+    cursor:pointer;
 }
 /* Login */
 #container-login {
@@ -150,7 +153,7 @@ input[type="text"]:focus, input[type="password"]:focus, textarea:focus {
 }
 
 /* validation */
-.field-validation-error {
+.field-validation-error, .errorblock {
     font-style: italic;
     background: rgb(255, 76, 90);
     width: 100%;
@@ -186,7 +189,7 @@ input[type="text"]:focus, input[type="password"]:focus, textarea:focus {
 }
 /* NAV */
 header {
-	background:rgb(4, 128, 187);
+	background:rgb(129, 182, 112);
 	box-sizing: border-box;
 	margin-bottom: 20px;
 	border-bottom: 2px solid rgb(199, 199, 199);
@@ -208,7 +211,7 @@ header {
 	text-decoration:none;
 }
 #header-nav > ul > li > a:hover {
-	background-color: rgb(4, 143, 187);
+	background-color: rgb(123, 212, 127);
 }
 #account-nav {
 	float:right !important;
@@ -299,6 +302,7 @@ footer {
 	padding:5px 10px;
 	width:120px;
 	text-align:center;
+        box-sizing: border-box;
 }
 .credit-contact-social {
 	padding:0;
@@ -315,9 +319,15 @@ footer {
 	text-align:center;
 	margin-right: -3px;
 }
+.credit-contact-social > li > a {
+    text-decoration: none;
+    width: 30px;
+    height: 28px;
+    display: inline-block;
+}
 .credit-contact-social > li > a > .symbol {
 	position:relative;
-	top:-7px;
+	top:-5px;
 }
 .credit-contact-social > li > a:hover {
 	text-decoration:none;

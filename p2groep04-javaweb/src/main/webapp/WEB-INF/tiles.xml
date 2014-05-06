@@ -2,10 +2,27 @@
        "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
        "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
  
- <tiles-definitions>
+<tiles-definitions>
      
-    <definition name="planning/viewPlanning" template="/WEB-INF/jsp/base.jsp">
-        <put-attribute name="body" value="/WEB-INF/jsp/planning/viewPlanning.jsp"/>
+    <definition name="base.plain" template="/WEB-INF/jsp/template/basePlain.jsp">
+        <put-attribute name="footer" value="/WEB-INF/jsp/template/footer.jsp"/>
+    </definition>
+    
+    <definition name="base.main" extends="base.plain">         
+        <put-attribute name="main" value="app.base"/>
+        <put-attribute name="body" value="/WEB-INF/jsp/views/planning/viewPlanning.jsp" cascade="true"/>
+    </definition>
+    
+    <definition name="app.base" template="/WEB-INF/jsp/template/base.jsp">
+        <put-attribute name="body" value="/WEB-INF/jsp/views/planning/viewPlanning.jsp" cascade="true"/>
+    </definition>
+ 
+    <definition name="view.login" extends="base.plain">
+        <put-attribute name="main" value="/WEB-INF/jsp/views/login.jsp" />
+    </definition>
+    
+    <definition name="view.planning.viewPlanning" extends="base.main">        
+        <put-attribute name="body" value="/WEB-INF/jsp/views/planning/viewPlanning.jsp" cascade="true"/>
     </definition>
     
 </tiles-definitions>

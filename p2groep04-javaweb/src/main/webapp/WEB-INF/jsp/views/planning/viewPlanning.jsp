@@ -1,5 +1,6 @@
-<div id="calendar"></div>
-
+<section id="dashboard" class="pane">
+    <div id="calendar"></div>
+</section>
 <script>
     $(document).ready(function() {
         $.getJSON("/p2groep04-javaweb/planning/get.htm", function(planning) {

@@ -3,3 +3,11 @@
 .fc-event {
     cursor: pointer;
 }
+.fc-button {
+    background: #FAFAFA !important;
+    box-shadow: none !important;
+    border: 1px solid rgb(211, 211, 211) !important;
+}
+.fc-button:hover {
+    background-color: #fff;
+}
