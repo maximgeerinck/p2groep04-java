@@ -11,7 +11,7 @@
             </ul>
             <div id="account-nav" class="dropdown">
                 <a class="thumb-sm avatar" data-toggle="dropdown" href="#">
-                    <img src="https://chamilo.hogent.be/application/bamaflex/php/webservices/foto_call.class.php?user_id=1" /><security:authentication property="principal.username"/><span class="caret"></span>
+                    <img src="https://chamilo.hogent.be/application/bamaflex/php/webservices/foto_call.class.php?user_id=1" /><security:authentication property="principal.firstName"/> <security:authentication property="principal.lastName"/><span class="caret"></span>
                 </a>
 
                 <ul class="dropdown-menu animated fadeInRight" role="menu" aria-labelledby="dLabel">

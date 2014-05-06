@@ -46,7 +46,7 @@
                 defaultView: 'agendaWeek',
                 eventClick: function(calEvent, jsEvent, view) {
                     alert("kzet wel nen popup voor in te schrijven en zoo... DAG LOGAN");
-
+                    
                     // change the border color just for fun
                     //$(this).css('border-color', 'red');
                 }

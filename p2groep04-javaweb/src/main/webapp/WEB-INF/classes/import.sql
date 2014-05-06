@@ -190,7 +190,7 @@ INSERT INTO user (`id`, `username`, `role`, `created_on`, `email`, `enabled`, `f
 # INSERT INTO user_role (`user_id`, `role_id`) VALUES (4, 3);
 
 # user: Logan Dupont - STUDENT
-INSERT INTO user (`id`, `role`, `created_on`, `email`, `enabled`, `first_name`, `last_ip`, `last_name`, `password`,`salt`, `updated_on`, `suggestion_id`) VALUES (5, "Student", NOW(), "logandupont@hotmail.com", 1, "Logan", "127.0.0.1", "Dupont", "ef3c52f55940f352278b8595073c074ea91507b06e429892d8b116b90d4dbdb6d986870cec242e584327bda2a53d4174f52fe799207495101fccf2191ed38675", "Unknown", NOW(), NULL); 
+INSERT INTO user (`id`, `username`, `role`, `created_on`, `email`, `enabled`, `first_name`, `last_ip`, `last_name`, `password`,`salt`, `updated_on`, `suggestion_id`) VALUES (5, "208134ld", "Student", NOW(), "logandupont@hotmail.com", 1, "Logan", "127.0.0.1", "Dupont", "ef3c52f55940f352278b8595073c074ea91507b06e429892d8b116b90d4dbdb6d986870cec242e584327bda2a53d4174f52fe799207495101fccf2191ed38675", "Unknown", NOW(), NULL); 
 # INSERT INTO user_role (`user_id`, `role_id`) VALUES (5, 3);
 
 # suggestions
