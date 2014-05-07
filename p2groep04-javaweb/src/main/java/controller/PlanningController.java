@@ -3,75 +3,92 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package controller;
 
 import entity.Planning;
 import entity.Presentation;
 import model.repositories.PlanningRepository;
+import model.repositories.PresentationRepository;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
+import org.hibernate.metamodel.MetadataSources;
+import org.hibernate.service.ServiceRegistry;
+import org.hibernate.service.ServiceRegistryBuilder;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
 
 /**
  *
  * @author Maxim
  */
 @Controller
-public class PlanningController 
-{
-    
+public class PlanningController {
+
     @Autowired
     private PlanningRepository planningRepository;
-    
+
+    @Autowired
+    private PresentationRepository presentationRepository;
+
+    @Autowired
+    private SessionFactory sessionFactory;  
+     
     @RequestMapping(value = {"/planning/view"}, method = RequestMethod.GET)
-    public String showPlanning() 
-    {
+    public String showPlanning() {
         return "view.planning.viewPlanning";
     }
-    
+
     @RequestMapping(value = "/planning/get", method = RequestMethod.GET)
-    public @ResponseBody String getPlanningJson() throws JSONException
-    {
-        
+    public @ResponseBody
+    String getPlanningJson() throws JSONException {
+
         //get planning        
-        Planning planning = planningRepository.findOne(1L);        
-         
+        Planning planning = planningRepository.findOneById(1L);
+
         JSONArray pArray = new JSONArray();
         JSONObject planningJSON = new JSONObject();
-        
-        
+
         planningJSON.put("id", planning.getId());
         planningJSON.put("starttime", planning.getStartTime());
         planningJSON.put("endtime", planning.getEndTime());
+
+        //List<Presentation> presentations = (List<Presentation>)presentationRepository.findByPlanning(planning.getId());
         
-        for(Presentation p : planning.getPresentations()) 
-        {
+        for (Presentation p : planning.getPresentations()) {
+
+            sessionFactory.openSession();
+            sessionFactory.getCurrentSession().getTransaction().begin();
+        
             JSONObject presentationJSON = new JSONObject();
             presentationJSON.put("id", p.getId());
             presentationJSON.put("date", p.getDate());
             presentationJSON.put("copromotor", p.getCoPromotor());
             presentationJSON.put("location", p.getLocation());
             presentationJSON.put("promotor", p.getPromotor());
-            presentationJSON.put("presentator", p.getPresentator());   
+            presentationJSON.put("presentator", p.getPresentator());
             presentationJSON.put("subject", "Nog in te vullen");
-            
+            presentationJSON.put("capacity", p.getLocation().getCapacity());
+            presentationJSON.put("subscribers", p.getAttendees().size());
+
             // timeframe array
             JSONObject timeframeJSON = new JSONObject();
             timeframeJSON.put("starttime", p.getTimeFrame().getStartTime());
             timeframeJSON.put("endtime", p.getTimeFrame().getEndTime());
-            presentationJSON.put("timeframe", timeframeJSON);    
-            
+            presentationJSON.put("timeframe", timeframeJSON);
+
             pArray.put(presentationJSON);
+             sessionFactory.getCurrentSession().getTransaction().commit();
+        sessionFactory.close();
         }
-        
+       
+
         planningJSON.put("presentations", pArray);
         return planningJSON.toString();
     }

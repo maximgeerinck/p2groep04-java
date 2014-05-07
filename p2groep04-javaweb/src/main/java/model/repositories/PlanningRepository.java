@@ -8,6 +8,8 @@ package model.repositories;
 
 import entity.Planning;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
@@ -15,4 +17,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
  */
 public interface PlanningRepository extends JpaRepository<Planning, Long>{
     
+    @Transactional
+    @Query("select pl from Planning pl where pl.id = ?1")
+    Planning findOneById(Long id);
 }

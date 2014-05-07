@@ -1,5 +1,31 @@
 <section id="dashboard" class="pane">
     <div id="calendar"></div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="modal-event" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+                </div>
+                <div class="modal-body">
+                    <!-- progressbar -->
+                    <div class="progress progress-striped active" id="progressbar-amount">
+                        <div class="progress-bar" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100">
+                            <span id="amount_subscribed"></span>/<span id="amount_capacity"></span>
+                        </div>
+                    </div>
+                    
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" id="btnInschrijven" class="btn btn-primary">Inschrijven</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </section>
 <script>
     $(document).ready(function() {
@@ -45,10 +71,13 @@
                 timeFormat: 'H(:mm)', // uppercase H for 24-hour clock
                 defaultView: 'agendaWeek',
                 eventClick: function(calEvent, jsEvent, view) {
-                    alert("kzet wel nen popup voor in te schrijven en zoo... DAG LOGAN");
+                    console.log(calEvent);
+                    // get details
+                    $('#amount_subscribed').text(planning['presentations'][calEvent.id].subscribers);
+                    $('#amount_capacity').text(planning['presentations'][calEvent.id].capacity);
+                    $('#progressbar-amount .progress-bar').css('width', (planning['presentations'][calEvent.id].subscribers / planning['presentations'][calEvent.id].capacity * 100) + '%');
                     
-                    // change the border color just for fun
-                    //$(this).css('border-color', 'red');
+                    $('#modal-event').modal('show');
                 }
             });
         });

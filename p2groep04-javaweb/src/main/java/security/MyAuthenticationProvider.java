@@ -11,6 +11,7 @@ import entity.User;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import javax.servlet.http.HttpServletRequest;
 import model.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationProvider;
@@ -22,8 +23,10 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
 /**
- *
  * @author Maxim
+ * 
+ * Voor meer controle over het spring authentication
+ * http://stackoverflow.com/questions/14733418/login-logout-in-rest-with-spring-3/14735345#14735345
  */
 public class MyAuthenticationProvider implements AuthenticationProvider 
 {
@@ -36,9 +39,6 @@ public class MyAuthenticationProvider implements AuthenticationProvider
         UsernamePasswordAuthenticationToken auth = (UsernamePasswordAuthenticationToken) authentication;
         String username = String.valueOf(auth.getPrincipal());
         String password = String.valueOf(auth.getCredentials());
-
-        System.out.println("username:" + username);
-        System.out.println("password:" + password); // Don't log passwords in real app
 
         // 1. Use the username to load the data for the user, including authorities and password.
         User user = (User)userRepository.findOneByUsername(username);
@@ -60,7 +60,8 @@ public class MyAuthenticationProvider implements AuthenticationProvider
         List<GrantedAuthority> authorities = new ArrayList<>();
         authorities.add(new SimpleGrantedAuthority("ROLE_USER"));
         
-        return new UsernamePasswordAuthenticationToken(user, null, authorities);
+        Authentication token = new UsernamePasswordAuthenticationToken(user, saltPassword, authorities); 
+        return token;
     }
 
     @Override

@@ -18,11 +18,14 @@
         <spring:url value="/resources/plugins/bootstrap-modified/css/bootstrap-theme.css" var="css_bootstraptheme"/>
         <spring:url value="/resources/plugins/bootstrap/js/bootstrap.js" var="js_bootstrap"/>
         
+        <c:set var="css_version" value="1.0" />
+        <c:set var="js_version" value="1.0" />
+        
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>P02Groep04</title>
         
         <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
-        
+         
         
         <link rel="stylesheet" href="${css_fullcalendar}" type="text/css" /> 
         <link rel="stylesheet" href="${css_fullcalendarprint}" type="text/css" media="print"/> 

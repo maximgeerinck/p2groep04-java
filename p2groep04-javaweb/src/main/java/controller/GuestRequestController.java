@@ -11,7 +11,7 @@ import entity.Presentation;
 import entity.Student;
 import java.util.List;
 import model.repositories.GuestRequestRepository;
-import model.repositories.PresentationRepository;
+import model.repositories.PresentationRepository2;
 import model.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,7 +26,7 @@ public class GuestRequestController {
     @Autowired
     private GuestRequestRepository guestRequestRepository;
     
-    private PresentationRepository presentationRepository;
+    private PresentationRepository2 presentationRepository;
     
     @Autowired
     private UserRepository userRepository;

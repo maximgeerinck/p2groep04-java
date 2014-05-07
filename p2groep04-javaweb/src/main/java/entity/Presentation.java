@@ -3,6 +3,8 @@ package entity;
 import java.io.*;
 import java.util.*;
 import javax.persistence.*;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 @Entity
 public class Presentation implements Serializable 
@@ -19,7 +21,7 @@ public class Presentation implements Serializable
     @JoinColumn(name = "location_id", referencedColumnName = "id")
     private Location location;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinTable(name = "presentation_attendees",
             joinColumns = {@JoinColumn(name = "presentation_id")},
             inverseJoinColumns = {@JoinColumn(name = "student_id")})
