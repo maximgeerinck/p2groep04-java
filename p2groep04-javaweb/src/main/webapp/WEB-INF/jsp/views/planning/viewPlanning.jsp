@@ -14,8 +14,15 @@
                     <div class="progress progress-striped active" id="progressbar-amount">
                         <div class="progress-bar" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100">
                             <span id="amount_subscribed"></span>/<span id="amount_capacity"></span>
+                            
+                            
                         </div>
                     </div>
+                    
+                    <span id="titel"></span>
+                            <span id="researchdomain"></span>
+                            <span id="naam"></span>
+                            <span id="voornaam"></span>
                     
                 </div>
                 <div class="modal-footer">
@@ -76,6 +83,8 @@
                     $('#amount_subscribed').text(planning['presentations'][calEvent.id].subscribers);
                     $('#amount_capacity').text(planning['presentations'][calEvent.id].capacity);
                     $('#progressbar-amount .progress-bar').css('width', (planning['presentations'][calEvent.id].subscribers / planning['presentations'][calEvent.id].capacity * 100) + '%');
+                    
+                    $('#voornaam').text(planning['presentations'][calEvent.id].presentator);
                     
                     $('#modal-event').modal('show');
                 }

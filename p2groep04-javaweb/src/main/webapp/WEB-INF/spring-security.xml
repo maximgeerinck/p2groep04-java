@@ -3,7 +3,7 @@
      <!-- 
      ?  -> match 1 karakter
      *  -> matcht 0+ karakters tot de volgende seperator /
-     ** -> matcht 0+ karakters inclusief seperatoren /
+     ** -> matcht 0+ karakters inclusief sepera(toren /
      -->
      
      <http use-expressions="true" auto-config="false">

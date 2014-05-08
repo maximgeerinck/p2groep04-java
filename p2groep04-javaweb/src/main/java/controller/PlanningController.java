@@ -63,9 +63,7 @@ public class PlanningController {
         
         for (Presentation p : planning.getPresentations()) {
 
-            sessionFactory.openSession();
-            sessionFactory.getCurrentSession().getTransaction().begin();
-        
+     
             JSONObject presentationJSON = new JSONObject();
             presentationJSON.put("id", p.getId());
             presentationJSON.put("date", p.getDate());
@@ -75,7 +73,7 @@ public class PlanningController {
             presentationJSON.put("presentator", p.getPresentator());
             presentationJSON.put("subject", "Nog in te vullen");
             presentationJSON.put("capacity", p.getLocation().getCapacity());
-            presentationJSON.put("subscribers", p.getAttendees().size());
+            //presentationJSON.put("subscribers", p.getAttendees().size());
 
             // timeframe array
             JSONObject timeframeJSON = new JSONObject();
@@ -84,8 +82,7 @@ public class PlanningController {
             presentationJSON.put("timeframe", timeframeJSON);
 
             pArray.put(presentationJSON);
-             sessionFactory.getCurrentSession().getTransaction().commit();
-        sessionFactory.close();
+          
         }
        
 
