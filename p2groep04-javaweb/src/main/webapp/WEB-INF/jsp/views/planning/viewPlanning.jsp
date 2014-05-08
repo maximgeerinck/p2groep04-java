@@ -20,9 +20,8 @@
                     </div>
                     
                     <span id="titel"></span>
-                            <span id="researchdomain"></span>
-                            <span id="naam"></span>
-                            <span id="voornaam"></span>
+                    <span id="researchdomains"></span>
+                    <span id="naam"></span>
                     
                 </div>
                 <div class="modal-footer">
@@ -78,13 +77,20 @@
                 timeFormat: 'H(:mm)', // uppercase H for 24-hour clock
                 defaultView: 'agendaWeek',
                 eventClick: function(calEvent, jsEvent, view) {
-                    console.log(calEvent);
                     // get details
                     $('#amount_subscribed').text(planning['presentations'][calEvent.id].subscribers);
                     $('#amount_capacity').text(planning['presentations'][calEvent.id].capacity);
                     $('#progressbar-amount .progress-bar').css('width', (planning['presentations'][calEvent.id].subscribers / planning['presentations'][calEvent.id].capacity * 100) + '%');
                     
-                    $('#voornaam').text(planning['presentations'][calEvent.id].presentator);
+                    $('#naam').text(planning['presentations'][calEvent.id].presentator);
+                    $('#titel').text(planning['presentations'][calEvent.id].subject);
+                    
+                    //array overlopen
+                    var rds = [];
+                    for(var j = 0; j < planning['presentations'][calEvent.id].researchDomains.length; i++) {
+                        rds.put(planning['presentations'][calEvent.id].researchDomains[j].name);
+                    }
+                    $('#researchdomains').text(rds.join());
                     
                     $('#modal-event').modal('show');
                 }

@@ -26,10 +26,6 @@ public class Student extends User
     @OneToMany(mappedBy = "student", targetEntity = Suggestion.class)
     private List<Suggestion> suggestions;
     
-    @OneToOne
-    @JoinColumn(name = "suggestion_id", referencedColumnName = "id")
-    private Suggestion approvedSuggestion;
-    
     @OneToMany(mappedBy = "student", targetEntity = GuestRequest.class)
     private List<GuestRequest> guestRequests;
     
@@ -37,7 +33,7 @@ public class Student extends User
     private List<Promotor> promotors;
     
     @ManyToMany(mappedBy = "attendees")
-    private List<Presentation> presentationsAttending;
+    private List<Presentation> presentationsAttending;    
 
     public List<Promotor> getPromotors() {
         return this.promotors;
@@ -70,15 +66,17 @@ public class Student extends User
     public void setSuggestions(List<Suggestion> suggestions) {
         this.suggestions = suggestions;
     }
-
-    public Suggestion getApprovedSuggestion() {
-        return approvedSuggestion;
+    
+    
+    public Suggestion getActiveSuggestion() {
+        for(Suggestion s : suggestions) {
+            if(s.isActive()) {
+                return s;
+            }
+        }
+        return null;
     }
-
-    public void setApprovedSuggestion(Suggestion approvedSuggestion) {
-        this.approvedSuggestion = approvedSuggestion;
-    }    
-
+    
     public Student() {
     }
 }

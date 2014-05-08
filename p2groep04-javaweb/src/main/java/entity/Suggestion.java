@@ -1,6 +1,7 @@
 package entity;
 
 import java.io.*;
+import java.util.List;
 import javax.persistence.*;
 
 @Entity
@@ -15,12 +16,17 @@ public class Suggestion implements Serializable
     @JoinColumn(name = "student_id", referencedColumnName = "id")
     private Student student;
 
-    @ManyToOne
-    @JoinColumn(name = "researchdomain_id", referencedColumnName = "id")
-    private ResearchDomain researchDomain;
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinTable(name = "suggestion_researchdomain",
+            joinColumns = {@JoinColumn(name = "suggestion_id")},
+            inverseJoinColumns = {@JoinColumn(name = "researchdomain_id")})
+    private List<ResearchDomain> researchDomains;
 
     @Column(name = "subject")
     private String subject;
+    
+    @Column(name = "active")
+    private Boolean active;
 
     public Student getStudent() {
         return student;
@@ -46,7 +52,19 @@ public class Suggestion implements Serializable
         this.subject = subject;
     }
 
+    public List<ResearchDomain> getResearchDomains() {
+        return researchDomains;
+    }
+
+    public void setResearchDomains(List<ResearchDomain> researchDomains) {
+        this.researchDomains = researchDomains;
+    }
+    
     public Suggestion() {
+    }
+    
+    public Boolean isActive() {
+        return active;
     }
 
     @Override

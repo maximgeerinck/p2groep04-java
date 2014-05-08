@@ -7,6 +7,7 @@ package controller;
 
 import entity.Planning;
 import entity.Presentation;
+import entity.ResearchDomain;
 import model.repositories.PlanningRepository;
 import model.repositories.PresentationRepository;
 import org.hibernate.Session;
@@ -53,6 +54,7 @@ public class PlanningController {
         Planning planning = planningRepository.findOneById(1L);
 
         JSONArray pArray = new JSONArray();
+        JSONArray rArray = new JSONArray();
         JSONObject planningJSON = new JSONObject();
 
         planningJSON.put("id", planning.getId());
@@ -71,9 +73,18 @@ public class PlanningController {
             presentationJSON.put("location", p.getLocation());
             presentationJSON.put("promotor", p.getPromotor());
             presentationJSON.put("presentator", p.getPresentator());
+            
+            /*for(ResearchDomain r : p.getPresentator().getActiveSuggestion().getResearchDomains())
+            {
+                JSONObject rJSON = new JSONObject();
+                rJSON.put("id", r.getId());
+                rJSON.put("name", r.getName());
+                presentationJSON.put("researchDomains", rJSON);
+            }*/
+            
             presentationJSON.put("subject", "Nog in te vullen");
             presentationJSON.put("capacity", p.getLocation().getCapacity());
-            //presentationJSON.put("subscribers", p.getAttendees().size());
+            presentationJSON.put("subscribers", p.getCountAttendees());
 
             // timeframe array
             JSONObject timeframeJSON = new JSONObject();

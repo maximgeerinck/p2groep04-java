@@ -26,6 +26,9 @@ public class Presentation implements Serializable
             joinColumns = {@JoinColumn(name = "presentation_id")},
             inverseJoinColumns = {@JoinColumn(name = "student_id")})
     private List<Student> attendees;
+    
+    @Column(name = "attendees")
+    private int countAttendees;
 
     @Column(name = "date")
     @Temporal(TemporalType.DATE)
@@ -53,6 +56,9 @@ public class Presentation implements Serializable
     @OneToOne
     @JoinColumn(name = "copromotor_id", referencedColumnName = "id")
     private Promotor coPromotor;
+    
+    //@ManyToMany(mappedBy = "researchDomains")
+    //private List<Presentation> presentations;
 
     public int getId() {
         return this.id;
@@ -153,6 +159,14 @@ public class Presentation implements Serializable
         this.coPromotor = coPromotor;
     }    
 
+    public int getCountAttendees() {
+        return countAttendees;
+    }
+
+    public void setCountAttendees(int countAttendees) {
+        this.countAttendees = countAttendees;
+    }
+    
     /**
      *
      * @param timeFrame
