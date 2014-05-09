@@ -202,6 +202,6 @@ INSERT INTO suggestion_researchdomain (`suggestion_id`, `researchdomain_id`) VAL
 
 # planning, door BPC
 INSERT INTO planning (`id`, `allowed_to_view`, `start_time`, `end_time`, `visible`, `bpcoordinator_id`) VALUES (1, 1, NOW() - INTERVAL 1 DAY, NOW() + INTERVAL 1 DAY, 1, 1);
-INSERT INTO presentation (`id`, `location_id`, `planning_id`, `timeframe_id`, `presentator_id`, `date`, `attendees`) VALUES (1, 1, 1, 1, 4, CURDATE(), 5);
-INSERT INTO presentation (`id`, `location_id`, `planning_id`, `timeframe_id`, `presentator_id`, `date`, `attendees`) VALUES (2, 1, 1, 4, 5, CURDATE() + INTERVAL 1 DAY, 4);
+INSERT INTO presentation (`id`, `location_id`, `planning_id`, `timeframe_id`, `presentator_id`, `date`) VALUES (1, 1, 1, 1, 4, CURDATE());
+INSERT INTO presentation (`id`, `location_id`, `planning_id`, `timeframe_id`, `presentator_id`, `date`) VALUES (2, 1, 1, 4, 5, CURDATE() + INTERVAL 1 DAY);
 

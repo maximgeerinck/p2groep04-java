@@ -6,6 +6,7 @@
 
 package model.repositories;
 
+import entity.Planning;
 import entity.Presentation;
 import entity.User;
 import java.util.List;
@@ -18,6 +19,6 @@ import org.springframework.data.jpa.repository.Query;
  */
 public interface PresentationRepository extends JpaRepository<Presentation, Long>
 {
-    @Query("select p from Presentation p inner join p.planning pl left join fetch p.attendees a where pl.id = ?1")
-    List<Presentation> findByPlanning(Long planningId);
+    @Query("select p from Presentation p left join fetch p.attendees a where p.planning = ?1")
+    List<Presentation> findByPlanning(Planning planning);
 }

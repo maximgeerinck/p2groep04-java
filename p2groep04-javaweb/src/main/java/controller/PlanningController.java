@@ -8,6 +8,7 @@ package controller;
 import entity.Planning;
 import entity.Presentation;
 import entity.ResearchDomain;
+import java.util.List;
 import model.repositories.PlanningRepository;
 import model.repositories.PresentationRepository;
 import org.hibernate.Session;
@@ -61,11 +62,10 @@ public class PlanningController {
         planningJSON.put("starttime", planning.getStartTime());
         planningJSON.put("endtime", planning.getEndTime());
 
-        //List<Presentation> presentations = (List<Presentation>)presentationRepository.findByPlanning(planning.getId());
+        //List<Presentation> presentations = (List<Presentation>)presentationRepository.findByPlanning(planning);
         
         for (Presentation p : planning.getPresentations()) {
 
-     
             JSONObject presentationJSON = new JSONObject();
             presentationJSON.put("id", p.getId());
             presentationJSON.put("date", p.getDate());
@@ -74,17 +74,18 @@ public class PlanningController {
             presentationJSON.put("promotor", p.getPromotor());
             presentationJSON.put("presentator", p.getPresentator());
             
-            /*for(ResearchDomain r : p.getPresentator().getActiveSuggestion().getResearchDomains())
+            for(ResearchDomain r : p.getPresentator().getActiveSuggestion().getResearchDomains())
             {
                 JSONObject rJSON = new JSONObject();
                 rJSON.put("id", r.getId());
                 rJSON.put("name", r.getName());
-                presentationJSON.put("researchDomains", rJSON);
-            }*/
+                rArray.put(rJSON);
+            }            
+            presentationJSON.put("researchDomains", rArray);
             
-            presentationJSON.put("subject", "Nog in te vullen");
+            presentationJSON.put("subject", p.getPresentator().getActiveSuggestion().getSubject());
             presentationJSON.put("capacity", p.getLocation().getCapacity());
-            presentationJSON.put("subscribers", p.getCountAttendees());
+            presentationJSON.put("subscribers", p.getAttendees().size());
 
             // timeframe array
             JSONObject timeframeJSON = new JSONObject();

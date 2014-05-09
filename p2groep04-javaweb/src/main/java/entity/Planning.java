@@ -29,7 +29,7 @@ public class Planning implements Serializable
     private BPCoordinator bpcoordinator;
     
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "planning", targetEntity = Presentation.class)
-    private List<Presentation> presentations;
+    private Set<Presentation> presentations;
 
     public Long getId() {
         return this.id;
@@ -71,11 +71,11 @@ public class Planning implements Serializable
         this.allowedToView = allowedToView;
     }
 
-    public List<Presentation> getPresentations() {
+    public Set<Presentation> getPresentations() {
         return presentations;
     }
 
-    public void setPresentations(List<Presentation> presentations) {
+    public void setPresentations(Set<Presentation> presentations) {
         this.presentations = presentations;
     }
 

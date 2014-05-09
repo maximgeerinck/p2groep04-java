@@ -437,3 +437,15 @@ footer {
     background-color: rgb(123, 178, 214);
     background-position: 0 -15px;
 }
+
+/* TAG */
+.tag {
+    padding: 3px 5px;
+    border: 1px solid rgb(102, 196, 102);
+    background: rgb(141, 216, 111);
+    color: white;
+    border-radius: 3px;
+}
+.tag + .tag {
+    margin-left:3px;
+}

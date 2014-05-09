@@ -10,6 +10,7 @@ import java.util.*;
 import javax.persistence.CascadeType;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
@@ -23,8 +24,8 @@ public class Student extends User
     @JoinColumn(name = "presentation_id", referencedColumnName = "id")
     private Presentation presentation;
     
-    @OneToMany(mappedBy = "student", targetEntity = Suggestion.class)
-    private List<Suggestion> suggestions;
+    @OneToMany(mappedBy = "student", targetEntity = Suggestion.class, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private Set<Suggestion> suggestions = new HashSet<>();
     
     @OneToMany(mappedBy = "student", targetEntity = GuestRequest.class)
     private List<GuestRequest> guestRequests;
@@ -59,16 +60,17 @@ public class Student extends User
         this.presentation = presentation;
     }
 
-    public List<Suggestion> getSuggestions() {
+    public Set<Suggestion> getSuggestions() {
         return suggestions;
     }
 
-    public void setSuggestions(List<Suggestion> suggestions) {
+    public void setSuggestions(Set<Suggestion> suggestions) {
         this.suggestions = suggestions;
     }
     
     
-    public Suggestion getActiveSuggestion() {
+    public Suggestion getActiveSuggestion() 
+    {
         for(Suggestion s : suggestions) {
             if(s.isActive()) {
                 return s;

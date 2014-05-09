@@ -1,8 +1,12 @@
 package entity;
 
 import java.io.*;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import javax.persistence.*;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 @Entity
 public class Suggestion implements Serializable 
@@ -16,11 +20,12 @@ public class Suggestion implements Serializable
     @JoinColumn(name = "student_id", referencedColumnName = "id")
     private Student student;
 
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @Fetch(FetchMode.JOIN)
     @JoinTable(name = "suggestion_researchdomain",
             joinColumns = {@JoinColumn(name = "suggestion_id")},
             inverseJoinColumns = {@JoinColumn(name = "researchdomain_id")})
-    private List<ResearchDomain> researchDomains;
+    private Set<ResearchDomain> researchDomains = new HashSet<>();
 
     @Column(name = "subject")
     private String subject;
@@ -52,11 +57,11 @@ public class Suggestion implements Serializable
         this.subject = subject;
     }
 
-    public List<ResearchDomain> getResearchDomains() {
+    public Set<ResearchDomain> getResearchDomains() {
         return researchDomains;
     }
 
-    public void setResearchDomains(List<ResearchDomain> researchDomains) {
+    public void setResearchDomains(Set<ResearchDomain> researchDomains) {
         this.researchDomains = researchDomains;
     }
     

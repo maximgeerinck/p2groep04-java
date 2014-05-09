@@ -21,15 +21,12 @@ public class Presentation implements Serializable
     @JoinColumn(name = "location_id", referencedColumnName = "id")
     private Location location;
 
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(name = "presentation_attendees",
             joinColumns = {@JoinColumn(name = "presentation_id")},
             inverseJoinColumns = {@JoinColumn(name = "student_id")})
-    private List<Student> attendees;
+    private Set<Student> attendees = new HashSet<>();
     
-    @Column(name = "attendees")
-    private int countAttendees;
-
     @Column(name = "date")
     @Temporal(TemporalType.DATE)
     private Date date;
@@ -84,11 +81,11 @@ public class Presentation implements Serializable
         this.location = location;
     }
 
-    public List<Student> getAttendees() {
+    public Set<Student> getAttendees() {
         return attendees;
     }
 
-    public void setAttendees(List<Student> attendees) {
+    public void setAttendees(Set<Student> attendees) {
         this.attendees = attendees;
     }
 
@@ -158,14 +155,6 @@ public class Presentation implements Serializable
     public void setCoPromotor(Promotor coPromotor) {
         this.coPromotor = coPromotor;
     }    
-
-    public int getCountAttendees() {
-        return countAttendees;
-    }
-
-    public void setCountAttendees(int countAttendees) {
-        this.countAttendees = countAttendees;
-    }
     
     /**
      *
