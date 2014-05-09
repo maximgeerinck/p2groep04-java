@@ -38,9 +38,6 @@ public class PlanningController {
 
     @Autowired
     private PresentationRepository presentationRepository;
-
-    @Autowired
-    private SessionFactory sessionFactory;  
      
     @RequestMapping(value = {"/planning/view"}, method = RequestMethod.GET)
     public String showPlanning() {
@@ -85,7 +82,7 @@ public class PlanningController {
             
             presentationJSON.put("subject", p.getPresentator().getActiveSuggestion().getSubject());
             presentationJSON.put("capacity", p.getLocation().getCapacity());
-            presentationJSON.put("subscribers", p.getAttendees().size());
+            presentationJSON.put("subscribers", p.getGuestRequests().size());
 
             // timeframe array
             JSONObject timeframeJSON = new JSONObject();
@@ -96,8 +93,7 @@ public class PlanningController {
             pArray.put(presentationJSON);
           
         }
-       
-
+        
         planningJSON.put("presentations", pArray);
         return planningJSON.toString();
     }

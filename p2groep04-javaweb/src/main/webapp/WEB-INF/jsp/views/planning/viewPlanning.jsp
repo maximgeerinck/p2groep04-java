@@ -51,8 +51,7 @@
 
             var presentations = planning['presentations'];
             var eventsCustom = [];
-            console.log(presentations.length);
-            
+
             for (var i = 0; i < presentations.length; i++) {
 
                 var tf = presentations[i]["timeframe"];
@@ -77,9 +76,6 @@
                 eventsCustom.push(event);
             }
             
-            console.log(eventsCustom);
-
-
             $('#calendar').fullCalendar({
                 header: {
                     left: 'prev,next today',
@@ -101,14 +97,17 @@
                     $('#naam').text(planning['presentations'][calEvent.key].presentator);
                     $('#myModalLabel').text(planning['presentations'][calEvent.key].subject);
                     $('#titel').text(planning['presentations'][calEvent.key].subject);
+                    $('#btnInschrijven').attr("data-val", calEvent.id);
                     
                     var rds = planning['presentations'][calEvent.key]["researchDomains"].map(function(elem){
                                   return '<span class="tag">' + elem.name + '</span>';
                               }).join("");
                     
-                    console.log(planning['presentations'][calEvent.key]["researchDomains"]);
                     $('#researchdomains').html(rds);
                     
+                    $('#modal-event').on('hidden.bs.modal', function(e) {
+                        location.reload();
+                    });
                     $('#modal-event').modal('show');
                 }
             });
@@ -118,16 +117,39 @@
         //data-val in btnInschrijven bevat presentatie id
         $('#btnInschrijven').click(function(event) {
             
-            var im = $('#inschrijven-melding')
-            $.post('/p2groep04-javaweb/presentatie/inschrijven', {id: $(this).attr('data-val')})
-                .done(function(data) {
-                    var data = JSON.parse(data);
+            var im = $('#inschrijven-melding');
             
-                    im.text((data["success"] == true) ? "U werd succesvol ingeschreven voor deze presentatie" : data["message"]);
-                    im.slideDown();
-                    im.attr("class", (data["success"] == true) ? "alert alert-success" : "alert alert-error");
-                });
-            })
+            $.ajax({
+                url: '/p2groep04-javaweb/presentatie/inschrijven.htm',
+                type: "POST",
+                data: $(this).attr('data-val'),
+                contentType: "application/json",
+                success: function(data) {
+                    try {
+                        console.log(data);
+                        var data = JSON.parse(data);
+                        
+                        im.text((data["success"] == true) ? "U werd succesvol ingeschreven voor deze presentatie" : data["message"]);
+                        im.slideDown();
+                        im.attr("class", (data["success"] == true) ? "alert alert-success" : "alert alert-error");
+                        
+                        if(data["success"] == true)  {
+                            var sub = $('#amount_subscribed');
+                            var subscribed = parseInt(sub.text());
+                            subscribed++;
+                            
+                            sub.text(subscribed);
+                            $('#progressbar-amount .progress-bar').css('width', (subscribed / parseInt($('#amount_capacity').text()) * 100 ) + "%");                            
+                        }
+                        
+                    } catch(ex) {
+                        console.log(ex);
+                        im.text("Er is een probleem opgetreden, gelieve het later nog eens te proberen.");
+                        im.slideDown();
+                        im.attr("class", "alert alert-error");
+                    }
+                }
+            });
         });
     });
 </script>

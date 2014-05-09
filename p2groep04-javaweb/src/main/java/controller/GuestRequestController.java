@@ -31,10 +31,10 @@ public class GuestRequestController {
     @Autowired
     private UserRepository userRepository;
     
-    @RequestMapping(value = "/requests", method = RequestMethod.GET)
-    public String addGuestRequest(int id) {
+    //@RequestMapping(value = "/requests", method = RequestMethod.GET)
+    //public String addGuestRequest(int id) {
         
-        Presentation presentation = presentationRepository.findById(id);
+       /* Presentation presentation = presentationRepository.findById(id);
         List<GuestRequest> guestRequests = presentation.getGuestRequests();
         String username = System.getProperty("user.name");
         if(presentation == null)
@@ -56,8 +56,8 @@ public class GuestRequestController {
                 return "listGuestRequests";
             }
         } 
-            
-    }
+            */
+   // }
     
     
 }

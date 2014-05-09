@@ -12,7 +12,7 @@ public class Presentation implements Serializable
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private int id;
+    private Long id;
 
     @Column(name = "editable")
     private transient boolean editable;
@@ -31,8 +31,8 @@ public class Presentation implements Serializable
     @Temporal(TemporalType.DATE)
     private Date date;
     
-    @OneToMany(mappedBy = "presentation", targetEntity = GuestRequest.class)
-    private List<GuestRequest> guestRequests;
+    @OneToMany(mappedBy = "presentation", targetEntity = GuestRequest.class, fetch = FetchType.EAGER)
+    private Set<GuestRequest> guestRequests;
     
     @OneToOne
     @JoinColumn(name = "timeframe_id", referencedColumnName = "id")
@@ -57,11 +57,11 @@ public class Presentation implements Serializable
     //@ManyToMany(mappedBy = "researchDomains")
     //private List<Presentation> presentations;
 
-    public int getId() {
+    public Long getId() {
         return this.id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
     
@@ -97,11 +97,11 @@ public class Presentation implements Serializable
         this.date = date;
     }
 
-    public List<GuestRequest> getGuestRequests() {
+    public Set<GuestRequest> getGuestRequests() {
         return guestRequests;
     }
 
-    public void setGuestRequests(List<GuestRequest> guestRequests) {
+    public void setGuestRequests(Set<GuestRequest> guestRequests) {
         this.guestRequests = guestRequests;
     }
 

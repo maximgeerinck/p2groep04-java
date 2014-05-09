@@ -27,28 +27,28 @@ public class Student extends User
     @OneToMany(mappedBy = "student", targetEntity = Suggestion.class, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<Suggestion> suggestions = new HashSet<>();
     
-    @OneToMany(mappedBy = "student", targetEntity = GuestRequest.class)
-    private List<GuestRequest> guestRequests;
+    @OneToMany(mappedBy = "student", targetEntity = GuestRequest.class, fetch = FetchType.EAGER)
+    private Set<GuestRequest> guestRequests;
     
     @ManyToMany(mappedBy="students", cascade=CascadeType.ALL)
-    private List<Promotor> promotors;
+    private Set<Promotor> promotors;
     
     @ManyToMany(mappedBy = "attendees")
-    private List<Presentation> presentationsAttending;    
+    private Set<Presentation> presentationsAttending;    
 
-    public List<Promotor> getPromotors() {
+    public Set<Promotor> getPromotors() {
         return this.promotors;
     }
 
-    public void setPromotors(List<Promotor> promotors) {
+    public void setPromotors(Set<Promotor> promotors) {
         this.promotors = promotors;
     }
 
-    public List<GuestRequest> getGuestRequests() {
+    public Set<GuestRequest> getGuestRequests() {
         return guestRequests;
     }
 
-    public void setGuestRequests(List<GuestRequest> guestRequests) {
+    public void setGuestRequests(Set<GuestRequest> guestRequests) {
         this.guestRequests = guestRequests;
     }
 
